@@ -40,8 +40,6 @@ android {
 }
 
 dependencies {
-    implementation(libs.io.coil.kt.coil3.coil)
-    implementation(libs.io.coil.kt.coil3.coilcompose)
     implementation(libs.com.squareup.retrofit2.retrofit)
     implementation(libs.com.squareup.retrofit2.converter.gson)
     implementation(libs.androidx.lifecycle.viewmodel)

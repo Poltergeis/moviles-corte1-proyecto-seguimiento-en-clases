@@ -16,7 +16,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.myapplicationexample1.api_consumer.presentation.screens.ApiConsumerScreen
+import com.example.myapplicationexample1.AhorcadoGame.presentation.screens.AhorcadoScreen
 import com.example.myapplicationexample1.counter.presentation.screens.CounterScreen
 import com.example.myapplicationexample1.login.presentation.screens.LoginScreen
 import com.example.myapplicationexample1.ui.theme.MyApplicationExample1Theme
@@ -27,7 +27,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             MyApplicationExample1Theme {
-                ApiConsumerScreen()
+                AhorcadoScreen()
             }
         }
     }

@@ -41,11 +41,19 @@ import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.myapplicationexample1.login.domain.usecase.LoginUseCase
+import com.example.myapplicationexample1.login.presentation.viewmodel.LoginViewModel
+import com.example.myapplicationexample1.login.presentation.viewmodelfactory.LoginViewModelFactory
 
 @Composable
-fun LoginScreen(){
-    var usernamevalue by remember { mutableStateOf("") }
-    var passwordvalue by remember { mutableStateOf("") }
+
+fun LoginScreen(viewmodel: LoginViewModel = viewModel(
+    factory = LoginViewModelFactory(loginUseCase = LoginUseCase())
+)){
+    val usernameState by viewmodel.username.collectAsStateWithLifecycle()
+    val passwordState by viewmodel.password.collectAsStateWithLifecycle()
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.SpaceBetween,
@@ -77,16 +85,16 @@ fun LoginScreen(){
                 modifier = Modifier.fillMaxWidth()
                     .padding(horizontal = 10.dp),
                 placeholder = { Text("Username") },
-                value = usernamevalue,
-                onValueChange = { it: String -> usernamevalue = it },
+                value = usernameState,
+                onValueChange = { it: String -> viewmodel.setUsername(it) },
             )
             Spacer(modifier = Modifier.height(10.dp))
             TextField(
                 modifier = Modifier.fillMaxWidth()
                     .padding(horizontal = 10.dp),
                 placeholder = {Text("password")},
-                value = passwordvalue,
-                onValueChange = { it:String -> passwordvalue = it }
+                value = passwordState,
+                onValueChange = { it:String -> viewmodel.setPassword(it) }
             )
             Spacer(modifier = Modifier.height(20.dp))
             Button(
